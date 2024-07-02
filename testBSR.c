@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <time.h>
 #include <limits.h>
@@ -8,8 +7,8 @@ unsigned int count_bits_clzl(unsigned long x) {
     return 8 * sizeof(long) - __builtin_clzl(x);
 }
 
-// 使用 BSR 方法
-unsigned int count_bits_bsr(unsigned long x) {
+// 使用 BSR 方法，移到内联函数中
+inline unsigned int count_bits_bsr(unsigned long x) {
     unsigned long index;
     __asm__("bsr %1, %0" : "=r" (index) : "r" (x));
     return index + 1;
